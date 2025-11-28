@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-directives',
   imports: [FormsModule],
   templateUrl: './directives.html',
-  styleUrl: './directives.css',
+  styleUrls: ['./directives.css'],
 })
 export class Directives {
   isStaticNoteVisible: boolean = false;
@@ -15,10 +15,26 @@ export class Directives {
   showNote() {
     this.isNoteVisible = true;
   }
+
   hideNote() {
     this.isNoteVisible = false;
   }
+
   toggleNote() {
     this.isParagraphVisible = !this.isParagraphVisible;
   }
+
+  monthNameStatic: string = 'Mar';
+  monthNameDynamic: string = 'Mar';
+
+  cityList: string[] = ['Angeles', 'San Fernando', 'Mabalacat', 'Tarlac', 'Bataan'];
+
+  studentList = [
+    { stud_name: 'D Esquivel', course: 'Web Development', isActive: false },
+    { stud_name: 'J Dizon', course: 'Network Administration', isActive: false },
+    { stud_name: 'F Alejandro', course: 'Systems Development', isActive: false },
+    { stud_name: 'J David', course: 'Cyber Security', isActive: false },
+    { stud_name: 'C Quintana', course: 'Web Development', isActive: true },
+  ];
 }
+
