@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Directives } from './directives';
 
 describe('Directives', () => {
@@ -9,8 +8,7 @@ describe('Directives', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Directives]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Directives);
     component = fixture.componentInstance;
@@ -21,3 +19,5 @@ describe('Directives', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
