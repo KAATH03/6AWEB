@@ -1,0 +1,63 @@
+<p>pipes-demo works!</p>
+
+<div>
+   Today's date :- {{presentDate | date}}
+</div>
+
+<div>
+  This is a short date :- {{presentDate | date: 'shortDate'}} <br/>
+  This line shows the full date :- {{presentDate | date:'fullDate' }} <br/>
+  This will show a formatted date:- {{presentDate | date:'M/dd/yyyy'}} <br/>
+  This indicates the hours and minutes:- {{presentDate | date:'h:mm'}} <br/>
+  Hello, {{name | uppercase}}
+</div>
+
+<div>
+  Date with uppercase :- {{presentDate | date:'fullDate' | uppercase}} <br>
+  Date with lowercase :- {{presentDate | date:'medium' | lowercase}} <br/>
+</div>
+
+<div>
+  <p>{{ price | currency }}</p>
+  <p>{{ price | currency:'USD': 'symbol':'1.0-0' }}</p>
+  <p>{{ price | currency:'EUR': 'code':'2.4-4' }}</p>
+</div>
+
+<div>
+  <h3>Start index:- {{Fruits | slice:2}}</h3>
+  <h4>Start and end index:- {{Fruits | slice:1:4}}</h4>
+  <h5>Negative index:- {{Fruits | slice:-2}}</h5>
+  <h6>Negative start and end index:- {{Fruits | slice:-4:-2}}</h6>
+  <p>-----------------------------------------------------------------------------------------</p>
+</div>
+
+<div style="text-align:center">
+  <h3>Decimal Pipe</h3>
+  <p> {{decimalNum1 | number}}</p>
+  <p> {{decimalNum2 | number}}</p>
+</div>
+
+<div>
+  <p>A: {{ a | percent }}</p>
+  <p>B: {{ b | percent: '4.3-5' }}</p>
+  <p>B: {{b | percent: '4.3-5' }}</p>
+  <p>-----------------------------------------------------------------------------------------</p>
+</div>
+
+<span>
+  <p>Object</p>
+    @for (item of object | keyvalue; track item.key) {
+      <div>{{ item.key }}:{{ item.value }}</div>
+    }
+    <p>Map</p>
+    @for (item of map | keyvalue; track item.key) {
+      <div>{{ item.key }}:{{ item.value }}</div>
+    }
+    <p>Natural order</p>
+    @for (item of map | keyvalue: null; track item.key) {
+      <div>{{ item.key }}:{{ item.value }}</div>
+    }
+    <p>-----------------------------------------------------------------------------------------</p>
+</span>
+
+<div>{{ gender | i18nSelect: inviteMap }}</div>
