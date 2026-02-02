@@ -1,0 +1,14 @@
+<div class="container">
+  <h2>Services</h2>
+
+  <div class="item-card">
+    <input class="purple-input" placeholder="Search..." [formControl]="search">
+  </div>
+
+  <div class="card-grid" *ngIf="(filtered$ | async) as results">
+    <div class="item-card" *ngFor="let post of results">
+      <h4>{{ post.title }}</h4>
+      <p>{{ post.body | truncate:80 }}</p>
+    </div>
+  </div>
+</div>

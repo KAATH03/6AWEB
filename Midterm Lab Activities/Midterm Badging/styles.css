@@ -1,0 +1,163 @@
+/* You can add global styles to this file, and also import other style files */
+/* GLOBAL STYLES */
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #ffe6f0; /* light pink */
+  color: #333;
+  line-height: 1.6;
+}
+
+nav {
+  background-color: #ff66a3; /* bright pink nav */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  border-bottom: 3px solid #ff3399;
+}
+
+nav .logo {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+nav .nav-links a {
+  color: white;
+  margin-left: 15px;
+  font-weight: bold;
+}
+
+nav .nav-links a.active {
+  text-decoration: underline;
+}
+
+.page {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 20px 25px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(255, 102, 163, 0.2);
+  border-top: 5px solid #ff66a3; /* pink accent */
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #ff3399;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ffd6eb;
+}
+
+strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #ff66a3;
+}
+
+p {
+  margin: 0;
+}
+
+/* Search Input */
+.input-search,
+.purple-input { /* added purple-input for Services page */
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ff66a3;
+  font-size: 1rem;
+  outline: none;
+}
+
+.input-search:focus,
+.purple-input:focus {
+  border-color: #ff3399;
+  box-shadow: 0 0 5px rgba(255, 102, 163, 0.4);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #ff66a3;
+  color: white;
+  margin-top: 20px;
+  font-size: 0.9em;
+  border-top: 3px solid #ff3399;
+}
+
+/* --- Services Cards & Grid --- */
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.item-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 4px 12px rgba(255, 102, 163, 0.2);
+  border-top: 5px solid #ff66a3;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(255, 102, 163, 0.35);
+}
+
+.item-card h4 {
+  color: #ff3399;
+  margin: 0 0 8px 0;
+}
+
+.item-card p {
+  margin: 0;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .page {
+    padding: 0 10px;
+  }
+}

@@ -1,0 +1,31 @@
+<div class="page">
+  <div class="card">
+    <h1>Contact Us</h1>
+
+    <form>
+      <div style="margin-bottom:10px">
+        <label>Name:</label>
+        <input type="text" [(ngModel)]="name" name="name" placeholder="Your Name" style="width:100%; padding:6px; border:1px solid #ff66a3; border-radius:5px;">
+      </div>
+
+      <div style="margin-bottom:10px">
+        <label>Email:</label>
+        <input type="email" [(ngModel)]="email" name="email" placeholder="Your Email" style="width:100%; padding:6px; border:1px solid #ff66a3; border-radius:5px;">
+      </div>
+
+      <div style="margin-bottom:10px">
+        <label>Message:</label>
+        <textarea [(ngModel)]="message" name="message" placeholder="Your Message" rows="4" style="width:100%; padding:6px; border:1px solid #ff66a3; border-radius:5px;"></textarea>
+      </div>
+
+      <button type="button" style="background-color:#ff66a3; color:white; padding:8px 12px; border:none; border-radius:5px;">Submit</button>
+    </form>
+
+    <div class="card" style="margin-top:20px; background-color:#fff0f5;">
+      <h3>Form Preview:</h3>
+      <p><strong>Name:</strong> {{ name | uppercase }}</p>
+      <p><strong>Email:</strong> {{ email }}</p>
+      <p><strong>Message:</strong> {{ message }}</p>
+    </div>
+  </div>
+</div>
