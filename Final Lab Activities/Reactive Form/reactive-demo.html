@@ -1,0 +1,85 @@
+<div class="card">
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+<input class="input" placeholder="Username" formControlName="username" />
+@if (isInvalid('username')) {
+<small class="error">Username: 4–12 chars (letters/numbers/_)</small>
+}
+
+
+<input class="input" type="email" placeholder="Email" formControlName="email" />
+@if (isInvalid('email')) {
+<small class="error">Enter a valid email</small>
+}
+
+
+<input class="input" type="password" placeholder="Password" formControlName="password" />
+@if (isInvalid('password')) {
+<small class="error">Password: 8+ with upper, lower, number</small>
+}
+
+
+<select class="input" formControlName="role">
+@for (r of roles; track r) {
+<option [value]="r">{{ r }}</option>
+}
+</select>
+
+
+<div class="group">
+
+<span class="label">Gender</span>
+
+<label>
+<input type="radio" value="Male" formControlName="gender">
+Male
+</label>
+
+<label>
+<input type="radio" value="Female" formControlName="gender">
+Female
+</label>
+
+</div>
+
+@if (isInvalid('gender')) {
+<small class="error">Gender is required</small>
+}
+
+
+<div class="group">
+
+<span class="label">Status</span>
+
+<label>
+<input type="radio" value="Permanent" formControlName="status">
+Permanent
+</label>
+
+<label>
+<input type="radio" value="Probationary" formControlName="status">
+Probationary
+</label>
+
+</div>
+
+@if (isInvalid('status')) {
+<small class="error">Status is required</small>
+}
+
+
+<textarea
+class="input textarea"
+placeholder="Enter comments / notes"
+formControlName="comments">
+</textarea>
+
+
+<button class="btn" type="submit" [disabled]="form.invalid">
+Submit
+</button>
+
+</form>
+
+</div>
