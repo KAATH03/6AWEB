@@ -1,0 +1,180 @@
+<div class="form-container" [class.dark]="isDarkMode">
+
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title matBadge="NEW" matBadgeColor="accent" matBadgePosition="above after">
+        IT Career Summit 2026 - Registration
+      </mat-card-title>
+      <mat-card-subtitle>
+        Please complete the form below. (DOB must be 2006 and below)
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <!-- Theme toggle -->
+      <div class="row-between">
+        <span class="muted">Theme</span>
+        <mat-slide-toggle (change)="onThemeToggle()">
+          {{ isDarkMode ? 'Dark' : 'Light' }} Mode
+        </mat-slide-toggle>
+      </div>
+
+      <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+
+        <mat-form-field appearance="fill" class="full">
+          <mat-label>Event</mat-label>
+          <input matInput formControlName="eventName">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Enter Text" formControlName="userName">
+          @if (formdata.controls['userName'].invalid && formdata.controls['userName'].touched) {
+            <mat-error>Username is required.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" placeholder="Enter Email" formControlName="email">
+          @if (formdata.controls['email'].invalid && formdata.controls['email'].touched) {
+            <mat-error>Email is required and must be a valid email.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Enter password" formControlName="password">
+          @if (formdata.controls['password'].invalid && formdata.controls['password'].touched) {
+            <mat-error>
+              Password must be alphanumeric, at least 8 characters, and start with a letter.
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <div class="radio-group">
+          <label class="radio-label">Gender</label>
+          <mat-radio-group formControlName="gender" class="gender-radio-group">
+            <mat-radio-button value="male">Male</mat-radio-button>
+            <mat-radio-button value="female">Female</mat-radio-button>
+            <mat-radio-button value="other">Other</mat-radio-button>
+          </mat-radio-group>
+          @if (formdata.controls['gender'].invalid && formdata.controls['gender'].touched) {
+            <div class="err">Gender is required.</div>
+          }
+        </div>
+
+        <mat-form-field appearance="fill" class="full">
+          <mat-label>Birth Date</mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="Select a date" formControlName="birthDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+
+          @if (formdata.controls['birthDate'].touched && formdata.controls['birthDate'].hasError('required')) {
+            <mat-error>Birth date is required.</mat-error>
+          }
+          @if (formdata.controls['birthDate'].touched && formdata.controls['birthDate'].hasError('dobTooYoung')) {
+            <mat-error>Only users born in 2006 and below are allowed.</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- ✅ Material Select -->
+        <mat-form-field appearance="fill" class="full">
+          <mat-label>Ticket Type</mat-label>
+          <mat-select formControlName="ticketType">
+            <mat-option value="student">Student</mat-option>
+            <mat-option value="regular">Regular</mat-option>
+            <mat-option value="vip">VIP</mat-option>
+          </mat-select>
+          @if (formdata.controls['ticketType'].invalid && formdata.controls['ticketType'].touched) {
+            <mat-error>Ticket type is required.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full">
+          <mat-label>Address</mat-label>
+          <input matInput placeholder="Enter Address" formControlName="address">
+        </mat-form-field>
+
+        <!-- ✅ Slider -->
+        <div class="sider-group">
+          <label class="slider-label">
+            Angular Skill Level: {{ formdata.get('angularSkillLevel')?.value }}
+          </label>
+          <mat-slider [min]="minSkillLevel" [max]="maxSkillLevel" [step]="1" [discrete]="true">
+            <input matSliderThumb formControlName="angularSkillLevel">
+          </mat-slider>
+        </div>
+
+        <!-- ✅ Slide toggle (notifications) -->
+        <div class="toggle-group">
+          <mat-slide-toggle formControlName="notifications">
+            Enable Notifications
+          </mat-slide-toggle>
+
+          <div class="muted">
+            Status:
+            @if (formdata.get('notifications')?.value) { <b>ON</b> } @else { <b>OFF</b> }
+          </div>
+        </div>
+
+        <!-- ✅ Chips (interests) -->
+        <div class="chips-wrap">
+          <label class="radio-label">Select your interests (choose at least 1)</label>
+
+          <mat-chip-listbox
+            multiple
+            (change)="onInterestsChange($event.value)"
+            aria-label="Select interests">
+
+            @for (item of interestOptions; track item) {
+              <mat-chip-option [value]="item">{{ item }}</mat-chip-option>
+            }
+          </mat-chip-listbox>
+
+          @if (formdata.controls['interests'].invalid && formdata.controls['interests'].touched) {
+            <div class="err">Please select at least 1 interest.</div>
+          }
+        </div>
+
+        <!-- Submit -->
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="formdata.invalid || isLoading"
+          matBadge="!"
+          matBadgeColor="warn"
+          matBadgeOverlap="false">
+          Submit
+        </button>
+
+        <!-- Spinner -->
+        @if (isLoading) {
+          <div class="spinnerWrap">
+            <mat-progress-spinner mode="indeterminate" diameter="48"></mat-progress-spinner>
+          </div>
+        }
+
+        <!-- Output -->
+        @if (submitted) {
+          <p class="result">
+            You have entered: <br>
+            Username: {{ userName }} <br>
+            Email: {{ email }} <br>
+            Password: {{ password }} <br>
+            Gender: {{ gender }} <br>
+            Address: {{ address }} <br>
+            Birth Date: {{ birthDate | date:'shortDate' }} <br>
+            Ticket Type: {{ formdata.get('ticketType')?.value }} <br>
+            Interests: {{ (formdata.get('interests')?.value || []).join(', ') }} <br>
+            Angular Skill Level: {{ angularSkillLevel }} <br>
+            Notifications: {{ formdata.get('notifications')?.value ? 'ON' : 'OFF' }}
+          </p>
+        }
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

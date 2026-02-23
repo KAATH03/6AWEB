@@ -1,0 +1,83 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.card {
+  width: 100%;
+  max-width: 720px;
+  padding: 8px;
+}
+
+.full {
+  width: 100%;
+}
+
+.row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.radio-group, .chips-wrap, .toggle-group, .sider-group {
+  margin: 14px 0;
+}
+
+.gender-radio-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.radio-label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.slider-label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.err {
+  color: #d32f2f;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.muted {
+  opacity: 0.85;
+  font-size: 13px;
+}
+
+.spinnerWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.result {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.05);
+}
+
+/* Dark mode */
+.form-container.dark {
+  background: #121212;
+  min-height: 100vh;
+}
+
+.form-container.dark .card {
+  background: #1e1e1e;
+  color: #fff;
+}
+
+.form-container.dark .result {
+  background: rgba(255,255,255,0.08);
+}
