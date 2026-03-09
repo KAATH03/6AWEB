@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const CONNECTION_STRING = "mongodb://127.0.0.1:27017";
+const CONNECTION_STRING = "mongodb+srv://sanchezkatherinee:20959470@cluster0.juce5qx.mongodb.net/";
 const DATABASENAME = "MyDb";
 
 let database = null;
