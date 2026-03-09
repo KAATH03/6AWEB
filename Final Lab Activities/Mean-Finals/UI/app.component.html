@@ -1,0 +1,119 @@
+<div class="page">
+  <div class="bg-circle one"></div>
+  <div class="bg-circle two"></div>
+
+  <div class="container">
+    <div class="app-card">
+      <div class="heading">
+        <h1 class="title">Books CRUD Application</h1>
+        <p class="subtitle">Manage and organize your book collection easily.</p>
+      </div>
+
+      <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" class="book-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Book Title</label>
+            <input type="text" formControlName="title" placeholder="Enter book title">
+            @if (f['title'].touched && f['title'].invalid) {
+              <small class="error">Book title is required.</small>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Author</label>
+            <input type="text" formControlName="author" placeholder="Enter author">
+            @if (f['author'].touched && f['author'].invalid) {
+              <small class="error">Author is required.</small>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Category</label>
+            <input type="text" formControlName="category" placeholder="Enter category">
+            @if (f['category'].touched && f['category'].invalid) {
+              <small class="error">Category is required.</small>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Price</label>
+            <input type="number" formControlName="price" placeholder="Enter price">
+            @if (f['price'].touched && f['price'].invalid) {
+              <small class="error">Valid price is required.</small>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Publisher</label>
+            <input type="text" formControlName="publisher" placeholder="Enter publisher">
+            @if (f['publisher'].touched && f['publisher'].invalid) {
+              <small class="error">Publisher is required.</small>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Year Published</label>
+            <input type="text" formControlName="yearPublished" placeholder="Enter year">
+            @if (f['yearPublished'].touched && f['yearPublished'].invalid) {
+              <small class="error">Year published is required.</small>
+            }
+          </div>
+        </div>
+
+        <div class="form-group full-width">
+          <label>Description</label>
+          <textarea rows="4" formControlName="description" placeholder="Enter book description"></textarea>
+          @if (f['description'].touched && f['description'].invalid) {
+            <small class="error">Description is required.</small>
+          }
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn primary-btn">
+            {{ isEditMode ? 'Update Book' : 'Add Book' }}
+          </button>
+
+          @if (isEditMode) {
+            <button type="button" class="btn secondary-btn" (click)="cancelEdit()">Cancel</button>
+          }
+        </div>
+      </form>
+    </div>
+
+    <div class="list-card">
+      <h2 class="section-title">Book List</h2>
+
+      @if (books.length > 0) {
+        <div class="book-list">
+          @for (book of books; track book.id) {
+            <div class="book-item">
+              <div class="book-top">
+                <div>
+                  <h3>{{ book.title }}</h3>
+                  <span class="book-badge">{{ book.category }}</span>
+                </div>
+                <div class="price-badge">₱{{ book.price }}</div>
+              </div>
+
+              <div class="book-content">
+                <p><strong>Description:</strong> {{ book.desc }}</p>
+                <p><strong>Author:</strong> {{ book.author }}</p>
+                <p><strong>Publisher:</strong> {{ book.publisher }}</p>
+                <p><strong>Year Published:</strong> {{ book.yearPublished }}</p>
+              </div>
+
+              <div class="actions">
+                <button class="btn edit-btn" (click)="editBook(book)">Edit</button>
+                <button class="btn delete-btn" (click)="deleteBook(book.id)">Delete</button>
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="empty-state">No books available yet.</p>
+      }
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
